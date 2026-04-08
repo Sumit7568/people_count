@@ -1,0 +1,14 @@
+FROM python:3.10
+
+WORKDIR /app
+
+COPY . .
+
+# Install system dependencies (important for OpenCV)
+RUN apt-get update && apt-get install -y libgl1
+
+# Install Python dependencies
+RUN pip install --no-cache-dir ultralytics opencv-python numpy pandas
+
+# Run your project
+CMD ["python", "main.py"]
